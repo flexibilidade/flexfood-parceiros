@@ -37,6 +37,7 @@ export interface Order {
     | "CONFIRMED"
     | "PREPARING"
     | "READY_FOR_PICKUP"
+    | "ON_THE_WAY"
     | "PICKED_UP"
     | "IN_TRANSIT"
     | "DELIVERED"
@@ -47,7 +48,6 @@ export interface Order {
   paymentStatus: string;
   paymentReference?: string;
   gatewayPaymentId?: string;
-  checkoutUrl?: string;
   paidAt?: string;
 
   // Delivery address
@@ -97,6 +97,11 @@ export const statusConfig = {
     label: "Pronto para Retirada",
     color: "bg-green-500",
     icon: "Package",
+  },
+  ON_THE_WAY: {
+    label: "Entregador a Caminho",
+    color: "bg-cyan-500",
+    icon: "Car",
   },
   PICKED_UP: {
     label: "Retirado",

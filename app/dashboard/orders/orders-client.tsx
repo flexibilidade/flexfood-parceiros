@@ -89,6 +89,7 @@ export function OrdersClient() {
       CONFIRMED: "Confirmado",
       PREPARING: "Preparando",
       READY_FOR_PICKUP: "Pronto",
+      ON_THE_WAY: "Entregador a Caminho",
       PICKED_UP: "Retirado",
       IN_TRANSIT: "Em Trânsito",
       DELIVERED: "Entregue",
@@ -109,7 +110,7 @@ export function OrdersClient() {
     }
     if (status === "completed") {
       return orders.filter((o) =>
-        ["PICKED_UP", "IN_TRANSIT", "DELIVERED"].includes(o.status)
+        ["ON_THE_WAY", "PICKED_UP", "IN_TRANSIT", "DELIVERED"].includes(o.status)
       );
     }
     return orders;
