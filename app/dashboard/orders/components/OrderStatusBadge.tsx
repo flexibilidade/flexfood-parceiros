@@ -1,6 +1,6 @@
 // Order status badge
 import { Badge } from "@/components/ui/badge";
-import { Clock, CheckCircle, XCircle, Package, ChefHat, Bike } from "lucide-react";
+import { Clock, CheckCircle, XCircle, Package, ChefHat, Bike, Car } from "lucide-react";
 import { Order, statusConfig } from "../types";
 
 interface OrderStatusBadgeProps {
@@ -14,11 +14,21 @@ const iconMap = {
   Package,
   ChefHat,
   Bike,
+  Car,
 };
 
 export function OrderStatusBadge({ status }: OrderStatusBadgeProps) {
   const config = statusConfig[status];
   const IconComponent = iconMap[config.icon as keyof typeof iconMap];
+
+  if (!IconComponent) {
+    console.error(`Icon not found for status: ${status}, icon: ${config.icon}`);
+    return (
+      <Badge className={`${config.color} text-white`}>
+        {config.label}
+      </Badge>
+    );
+  }
 
   return (
     <Badge className={`${config.color} text-white`}>

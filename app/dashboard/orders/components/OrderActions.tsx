@@ -11,48 +11,57 @@ interface OrderActionsProps {
 export function OrderActions({ order, onUpdateStatus }: OrderActionsProps) {
   const getActionButtons = () => {
     switch (order.status) {
-      case "PENDING":
+      case "CONFIRMED":
         return (
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-2">
             <Button
               size="sm"
-              onClick={() => onUpdateStatus(order.id, "CONFIRMED")}
-              className="bg-green-600 hover:bg-green-700"
+              onClick={() => onUpdateStatus(order.id, "PREPARING")}
+              className="bg-orange-600 hover:bg-orange-700 w-full"
             >
-              <CheckCircle className="w-4 h-4 mr-2" />
-              Confirmar
+              <ChefHat className="w-4 h-4 mr-2" />
+              Iniciar Preparo
             </Button>
             <Button
               size="sm"
               variant="destructive"
-              onClick={() => onUpdateStatus(order.id, "CANCELLED")}
+              onClick={() => {
+                if (confirm("Tem certeza que deseja recusar este pedido? O valor será estornado ao cliente.")) {
+                  onUpdateStatus(order.id, "CANCELLED");
+                }
+              }}
+              className="w-full"
             >
               <XCircle className="w-4 h-4 mr-2" />
-              Recusar
+              Recusar Pedido
             </Button>
           </div>
         );
-      case "CONFIRMED":
-        return (
-          <Button
-            size="sm"
-            onClick={() => onUpdateStatus(order.id, "PREPARING")}
-            className="bg-orange-600 hover:bg-orange-700 w-full"
-          >
-            <ChefHat className="w-4 h-4 mr-2" />
-            Iniciar Preparo
-          </Button>
-        );
       case "PREPARING":
         return (
-          <Button
-            size="sm"
-            onClick={() => onUpdateStatus(order.id, "READY_FOR_PICKUP")}
-            className="bg-green-600 hover:bg-green-700 w-full"
-          >
-            <Package className="w-4 h-4 mr-2" />
-            Marcar como Pronto
-          </Button>
+          <div className="flex flex-col gap-2">
+            <Button
+              size="sm"
+              onClick={() => onUpdateStatus(order.id, "READY_FOR_PICKUP")}
+              className="bg-green-600 hover:bg-green-700 w-full"
+            >
+              <Package className="w-4 h-4 mr-2" />
+              Marcar como Pronto
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => {
+                if (confirm("Tem certeza que deseja cancelar este pedido? O valor será estornado ao cliente.")) {
+                  onUpdateStatus(order.id, "CANCELLED");
+                }
+              }}
+              className="w-full border-red-300 text-red-600 hover:bg-red-50"
+            >
+              <XCircle className="w-4 h-4 mr-2" />
+              Cancelar Pedido
+            </Button>
+          </div>
         );
       case "READY_FOR_PICKUP":
         return (
