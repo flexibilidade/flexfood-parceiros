@@ -52,8 +52,18 @@ export default function WithdrawalsPage() {
             console.log("Balance response:", balanceResponse.data);
             console.log("Withdrawals response:", withdrawalsResponse.data);
 
-            setBalanceData(balanceResponse.data);
-            setWithdrawals(withdrawalsResponse.data);
+            // Balance response: { success: true, data: { balance, ... } }
+            if (balanceResponse.data.success && balanceResponse.data.data) {
+                setBalanceData({
+                    balance: balanceResponse.data.data.balance,
+                    availableForWithdrawal: balanceResponse.data.data.availableForWithdrawal,
+                });
+            }
+
+            // Withdrawals response: { success: true, data: { withdrawals: [...] } }
+            if (withdrawalsResponse.data.success && withdrawalsResponse.data.data) {
+                setWithdrawals(withdrawalsResponse.data.data.withdrawals || []);
+            }
         } catch (error: any) {
             console.error("Error fetching data:", error);
             toast.error(error.response?.data?.message || "Erro ao carregar dados");

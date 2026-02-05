@@ -42,7 +42,20 @@ export default function BalancePage() {
             setLoading(true);
             const response = await api.get("/api/partners/balance");
             console.log("Balance response:", response.data);
-            setBalanceData(response.data);
+            
+            // O backend retorna { success: true, data: { balance, totalEarnings, ... } }
+            if (response.data.success && response.data.data) {
+                setBalanceData({
+                    balance: response.data.data.balance,
+                    totalEarned: response.data.data.totalEarnings,
+                    pendingBalance: response.data.data.pendingBalance,
+                    availableForWithdrawal: response.data.data.availableForWithdrawal,
+                    recentTransactions: response.data.data.recentTransactions || [],
+                    recentWithdrawals: response.data.data.recentWithdrawals || [],
+                });
+            } else {
+                toast.error("Formato de resposta inválido");
+            }
         } catch (error: any) {
             console.error("Error fetching balance:", error);
             toast.error(error.response?.data?.message || "Erro ao carregar saldo");
