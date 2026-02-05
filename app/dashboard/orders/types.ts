@@ -33,15 +33,16 @@ export interface Order {
 
   // Status
   status:
-    | "PENDING"
-    | "CONFIRMED"
-    | "PREPARING"
-    | "READY_FOR_PICKUP"
-    | "ON_THE_WAY"
-    | "PICKED_UP"
-    | "IN_TRANSIT"
-    | "DELIVERED"
-    | "CANCELLED";
+  | "PENDING"
+  | "CONFIRMED"
+  | "PREPARING"
+  | "READY_FOR_PICKUP"
+  | "ON_THE_WAY"
+  | "PICKED_UP"
+  | "IN_TRANSIT"
+  | "DELIVERED"
+  | "CANCELLED"
+  | "FAILED_DELIVERY";
 
   // Payment
   paymentMethod: string;
@@ -122,5 +123,10 @@ export const statusConfig = {
     label: "Cancelado",
     color: "bg-red-500",
     icon: "XCircle",
+  },
+  FAILED_DELIVERY: {
+    label: "Entrega Falhada",
+    color: "bg-orange-500",
+    icon: "AlertTriangle",
   },
 } as const;

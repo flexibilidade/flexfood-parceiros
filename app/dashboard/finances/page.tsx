@@ -76,9 +76,9 @@ export default function FinancesPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap gap-4">
         <div>
           <h1 className="text-3xl font-bold">Finanças e Relatórios</h1>
           <p className="text-muted-foreground">Acompanhe o desempenho do seu negócio</p>
@@ -151,7 +151,7 @@ export default function FinancesPage() {
           <CardContent>
             <div className="text-2xl font-bold">{overview?.cancelledOrders}</div>
             <p className="text-xs text-muted-foreground">
-              {overview && overview.totalOrders > 0 
+              {overview && overview.totalOrders > 0
                 ? `${((overview.cancelledOrders / overview.totalOrders) * 100).toFixed(1)}% do total`
                 : "0% do total"}
             </p>
@@ -171,12 +171,12 @@ export default function FinancesPage() {
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={revenueByDay as any}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis 
-                  dataKey="date" 
+                <XAxis
+                  dataKey="date"
                   tickFormatter={(value) => new Date(value).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" })}
                 />
                 <YAxis />
-                <Tooltip 
+                <Tooltip
                   formatter={(value: number) => `${value.toFixed(2)} MT`}
                   labelFormatter={(label) => new Date(label).toLocaleDateString("pt-BR")}
                 />
@@ -188,7 +188,7 @@ export default function FinancesPage() {
         </Card>
 
         {/* Orders by Status Pie Chart */}
-        <Card>
+        <Card className='col-span-2 md:col-span-1'>
           <CardHeader>
             <CardTitle>Pedidos por Status</CardTitle>
             <CardDescription>Distribuição dos pedidos</CardDescription>
@@ -210,7 +210,7 @@ export default function FinancesPage() {
                     <Cell key={`cell-${index}`} fill={STATUS_COLORS[entry.status] || "#94a3b8"} />
                   ))}
                 </Pie>
-                <Tooltip 
+                <Tooltip
                   formatter={(value: number, name: string, props: any) => [value, STATUS_TRANSLATIONS[props.payload.status] || props.payload.status]}
                 />
               </PieChart>
@@ -219,7 +219,7 @@ export default function FinancesPage() {
         </Card>
 
         {/* Top Products Bar Chart */}
-        <Card>
+        <Card className='col-span-2 md:col-span-1'>
           <CardHeader>
             <CardTitle>Produtos Mais Vendidos</CardTitle>
             <CardDescription>Top 10 produtos por quantidade</CardDescription>

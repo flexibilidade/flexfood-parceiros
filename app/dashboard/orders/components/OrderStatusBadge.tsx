@@ -1,6 +1,6 @@
 // Order status badge
 import { Badge } from "@/components/ui/badge";
-import { Clock, CheckCircle, XCircle, Package, ChefHat, Bike, Car } from "lucide-react";
+import { Clock, CheckCircle, XCircle, Package, ChefHat, Bike, Car, AlertTriangle } from "lucide-react";
 import { Order, statusConfig } from "../types";
 
 interface OrderStatusBadgeProps {
@@ -15,6 +15,7 @@ const iconMap = {
   ChefHat,
   Bike,
   Car,
+  AlertTriangle,
 };
 
 export function OrderStatusBadge({ status }: OrderStatusBadgeProps) {

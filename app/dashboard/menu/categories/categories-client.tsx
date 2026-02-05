@@ -118,7 +118,7 @@ export default function CategoriesClient({ session }: { session: Session }) {
             </div>
 
             {/* Actions */}
-            <div className="flex justify-end mb-6">
+            <div className="flex mb-6">
                 <button
                     onClick={() => setShowModal(true)}
                     className="px-4 py-2.5 bg-primary text-white rounded-lg hover:opacity-90 transition-all font-medium flex items-center gap-2"

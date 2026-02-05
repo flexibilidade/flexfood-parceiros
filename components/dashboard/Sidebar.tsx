@@ -20,6 +20,9 @@ import {
   ShoppingBag,
   Package,
   UtensilsCrossed,
+  Wallet,
+  ArrowUpRight,
+  TrendingUp,
 } from "lucide-react";
 import {
   Sidebar as ShadcnSidebar,
@@ -90,6 +93,21 @@ const Sidebar = () => {
     {
       group: "Financeiro",
       links: [
+        {
+          name: "Saldo",
+          href: "/dashboard/balance",
+          icon: <Wallet size={20} />,
+        },
+        {
+          name: "Levantamentos",
+          href: "/dashboard/withdrawals",
+          icon: <ArrowUpRight size={20} />,
+        },
+        {
+          name: "Ganhos",
+          href: "/dashboard/earnings",
+          icon: <TrendingUp size={20} />,
+        },
         {
           name: "Finanças",
           href: "/dashboard/finances",
@@ -230,9 +248,8 @@ const Sidebar = () => {
                           <SidebarMenuButton
                             asChild
                             isActive={isActive}
-                            className={`w-full justify-start hover:bg-transparent ${
-                              isExpanded ? "px-3" : "justify-center px-2"
-                            }`}
+                            className={`w-full justify-start hover:bg-transparent ${isExpanded ? "px-3" : "justify-center px-2"
+                              }`}
                           >
                             <Link
                               href={link.href}
@@ -245,18 +262,16 @@ const Sidebar = () => {
                                   }, 150);
                                 }
                               }}
-                              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
-                                isActive
-                                  ? "bg-sidebar-accent text-sidebar-primary"
-                                  : "text-sidebar-foreground hover:bg-sidebar-accent/50"
-                              }`}
+                              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${isActive
+                                ? "bg-sidebar-accent text-sidebar-primary"
+                                : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+                                }`}
                             >
                               <div
-                                className={`flex-shrink-0 ${
-                                  isActive
-                                    ? "text-sidebar-primary"
-                                    : "text-sidebar-foreground/60"
-                                }`}
+                                className={`flex-shrink-0 ${isActive
+                                  ? "text-sidebar-primary"
+                                  : "text-sidebar-foreground/60"
+                                  }`}
                               >
                                 {link.icon}
                               </div>

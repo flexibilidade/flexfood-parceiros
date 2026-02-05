@@ -6,6 +6,14 @@ import Link from "next/link";
 import { menuService, Product } from "@/lib/services/menu-service";
 import { toast } from "sonner";
 import Image from "next/image";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
 
 type Session = {
     user: {
@@ -75,20 +83,21 @@ export default function MenuClient({ session }: { session: Session }) {
             </div>
 
             {/* Actions Bar */}
-            <div className="flex items-center justify-between gap-4 mb-6">
-                <div className="flex-1 max-w-md relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                        type="text"
-                        placeholder="Buscar produtos..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    />
+            <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                <div>
+                    <div className="md:flex-1  max-w-md relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Buscar produtos..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                    </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-
+                <div className="flex items-center gap-2 flex-wrap">
                     <button
                         onClick={() => setViewMode("list")}
                         className={`p-2.5 rounded-lg border transition-colors ${viewMode === "list"
@@ -107,22 +116,22 @@ export default function MenuClient({ session }: { session: Session }) {
                     >
                         <Grid className="w-5 h-5" />
                     </button>
+
+                    <Link
+                        href="/dashboard/menu/categories"
+                        className="px-4 py-2.5 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                    >
+                        Categorias
+                    </Link>
+
+                    <Link
+                        href="/dashboard/menu/products/new"
+                        className="px-4 py-2.5 bg-primary text-white rounded-lg hover:opacity-90 transition-all font-medium flex items-center gap-2"
+                    >
+                        <Plus className="w-5 h-5" />
+                        Novo Produto
+                    </Link>
                 </div>
-
-                <Link
-                    href="/dashboard/menu/categories"
-                    className="px-4 py-2.5 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-                >
-                    Categorias
-                </Link>
-
-                <Link
-                    href="/dashboard/menu/products/new"
-                    className="px-4 py-2.5 bg-primary text-white rounded-lg hover:opacity-90 transition-all font-medium flex items-center gap-2"
-                >
-                    <Plus className="w-5 h-5" />
-                    Novo Produto
-                </Link>
             </div>
 
             {/* Products List */}
@@ -235,33 +244,33 @@ export default function MenuClient({ session }: { session: Session }) {
                 </div>
             ) : (
                 <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-                    <table className="w-full">
-                        <thead className="bg-gray-50 border-b border-gray-200">
-                            <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Produto
-                                </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                </TableHead>
+                                <TableHead className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Categoria
-                                </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                </TableHead>
+                                <TableHead className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Preço
-                                </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                </TableHead>
+                                <TableHead className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Preparo
-                                </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                </TableHead>
+                                <TableHead className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status
-                                </th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                </TableHead>
+                                <TableHead className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Ações
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
+                                </TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
                             {filteredProducts.map((product) => (
-                                <tr key={product.id} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                <TableRow key={product.id}>
+                                    <TableCell className="px-6 py-4">
                                         <div className="flex items-center gap-3">
                                             {product.imageUrl ? (
                                                 <div className="relative w-12 h-12 rounded-lg overflow-hidden">
@@ -281,17 +290,17 @@ export default function MenuClient({ session }: { session: Session }) {
                                                 {product.name}
                                             </span>
                                         </div>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    </TableCell>
+                                    <TableCell className="px-6 py-4 text-sm text-gray-600">
                                         {product.menuCategory?.name}
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-primary">
+                                    </TableCell>
+                                    <TableCell className="px-6 py-4 text-sm font-semibold text-primary">
                                         {product.price.toFixed(2)} MZN
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    </TableCell>
+                                    <TableCell className="px-6 py-4 text-sm text-gray-600">
                                         {product.preparationTime} min
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    </TableCell>
+                                    <TableCell className="px-6 py-4">
                                         <button
                                             onClick={() => handleToggleAvailability(product.id, product.isAvailable)}
                                             className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ${product.isAvailable
@@ -311,8 +320,8 @@ export default function MenuClient({ session }: { session: Session }) {
                                                 </>
                                             )}
                                         </button>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                    </TableCell>
+                                    <TableCell className="px-6 py-4 text-right text-sm">
                                         <div className="flex items-center justify-end gap-2">
                                             <Link
                                                 href={`/dashboard/menu/products/${product.id}`}
@@ -327,11 +336,11 @@ export default function MenuClient({ session }: { session: Session }) {
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
                                         </div>
-                                    </td>
-                                </tr>
+                                    </TableCell>
+                                </TableRow>
                             ))}
-                        </tbody>
-                    </table>
+                        </TableBody>
+                    </Table>
                 </div>
             )}
         </div>

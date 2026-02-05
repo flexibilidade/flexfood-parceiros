@@ -42,6 +42,7 @@ export enum OrderStatus {
   IN_TRANSIT = "IN_TRANSIT",
   DELIVERED = "DELIVERED",
   CANCELLED = "CANCELLED",
+  FAILED_DELIVERY = "FAILED_DELIVERY",
 }
 
 export enum PaymentMethod {

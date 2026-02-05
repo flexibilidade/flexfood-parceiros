@@ -138,7 +138,7 @@ export default function EditProductClient({
     }
 
     return (
-        <div className="p-6">
+        <div className="py-6">
             {/* Header */}
             <div className="mb-6">
                 <Link

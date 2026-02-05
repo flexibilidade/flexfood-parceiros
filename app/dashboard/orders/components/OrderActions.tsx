@@ -1,6 +1,6 @@
 // Order action buttons
 import { Button } from "@/components/ui/button";
-import { CheckCircle, XCircle, ChefHat, Package, Bike } from "lucide-react";
+import { CheckCircle, XCircle, ChefHat, Package, Bike, AlertTriangle } from "lucide-react";
 import { Order } from "../types";
 
 interface OrderActionsProps {
@@ -99,6 +99,18 @@ export function OrderActions({ order, onUpdateStatus }: OrderActionsProps) {
             </div>
             <p className="text-sm text-muted-foreground">
               Pedido concluído com sucesso
+            </p>
+          </div>
+        );
+      case "FAILED_DELIVERY":
+        return (
+          <div className="text-center py-4">
+            <div className="flex items-center justify-center gap-2 text-orange-600 mb-2">
+              <AlertTriangle className="w-5 h-5" />
+              <span className="font-medium">Entrega Não Concluída</span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Não foi possível completar a entrega
             </p>
           </div>
         );

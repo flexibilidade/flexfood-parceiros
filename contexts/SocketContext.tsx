@@ -38,28 +38,28 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
   const [newOrders, setNewOrders] = useState<Order[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [audioLoaded, setAudioLoaded] = useState(false);
-  const [audioEnabled, setAudioEnabled] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(true);
   const { user, isLoading } = useAuth();
 
   // Initialize audio listeners
   useEffect(() => {
     const audio = audioRef.current;
-    
+
     if (audio) {
-      audio.volume = 0.7;
-      
+      audio.volume = 1;
+
       const handleCanPlay = () => {
         console.log("✅ Audio loaded and ready to play");
         setAudioLoaded(true);
       };
-      
+
       const handleError = (e: Event) => {
         console.error("❌ Audio load error:", e);
       };
-      
+
       audio.addEventListener("canplaythrough", handleCanPlay);
       audio.addEventListener("error", handleError);
-      
+
       return () => {
         audio.removeEventListener("canplaythrough", handleCanPlay);
         audio.removeEventListener("error", handleError);
@@ -122,15 +122,15 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
       console.log("🔊 Audio loaded:", audioLoaded);
       console.log("🔊 Audio enabled:", audioEnabled);
       console.log("🔊 Audio ref exists:", !!audioRef.current);
-      
+
       if (audioRef.current && audioEnabled) {
         // Reset audio to start
         audioRef.current.currentTime = 0;
         audioRef.current.loop = true; // Loop until user stops
-        
+
         // Try to play
         const playPromise = audioRef.current.play();
-        
+
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
@@ -140,7 +140,7 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
               console.error("❌ Audio play error:", err);
               console.error("Error name:", err.name);
               console.error("Error message:", err.message);
-              
+
               if (err.name === "NotAllowedError") {
                 console.log("⚠️ Autoplay blocked. Click 'Habilitar Som' button first.");
                 toast.error("Som bloqueado", {
@@ -198,7 +198,7 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
 
   const enableAudio = () => {
     console.log("🔊 Enabling audio...");
-    
+
     if (audioRef.current) {
       // Play a silent sound to unlock audio
       audioRef.current.volume = 0;
@@ -224,20 +224,20 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
 
   const testSound = () => {
     console.log("🧪 Testing sound...");
-    
+
     if (!audioEnabled) {
       toast.warning("Som desabilitado", {
         description: "Habilite o som primeiro",
       });
       return;
     }
-    
+
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.loop = false;
-      
+
       const playPromise = audioRef.current.play();
-      
+
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
@@ -255,9 +255,9 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
   return (
     <SocketContext.Provider value={{ socket, isConnected, newOrders, clearNewOrders, testSound, audioEnabled, enableAudio }}>
       {/* Hidden audio element for notification sound */}
-      <audio 
+      <audio
         ref={audioRef as any}
-        src="/notification.mp3" 
+        src="/notification.mp3"
         preload="auto"
         style={{ display: 'none' }}
       />

@@ -95,7 +95,7 @@ export default function NewProductClient({ session }: { session: Session }) {
     };
 
     return (
-        <div className="p-6">
+        <div className="py-6">
             {/* Header */}
             <div className="mb-6">
                 <Link
