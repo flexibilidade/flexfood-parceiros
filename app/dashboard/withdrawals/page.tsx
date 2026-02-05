@@ -99,7 +99,7 @@ export default function WithdrawalsPage() {
                         <ArrowLeft className="h-5 w-5" />
                     </Button>
                     <div>
-                        <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Levantamentos</h1>
+                        <h1 className="text-xl md:text-xl font-bold text-gray-900">Levantamentos</h1>
                         <p className="text-gray-600 mt-1">Solicite e acompanhe seus levantamentos</p>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ export default function WithdrawalsPage() {
                     <Card>
                         <CardHeader>
                             <CardDescription>Saldo Disponível</CardDescription>
-                            <CardTitle className="text-3xl font-bold text-green-600">
+                            <CardTitle className="text-xl font-bold text-green-600">
                                 {(balanceData.balance || 0).toFixed(2)} MT
                             </CardTitle>
                         </CardHeader>
@@ -125,7 +125,7 @@ export default function WithdrawalsPage() {
                     <Card>
                         <CardHeader>
                             <CardDescription>Disponível para Levantar</CardDescription>
-                            <CardTitle className="text-3xl font-bold text-blue-600">
+                            <CardTitle className="text-xl font-bold text-blue-600">
                                 {(balanceData.availableForWithdrawal || 0).toFixed(2)} MT
                             </CardTitle>
                         </CardHeader>

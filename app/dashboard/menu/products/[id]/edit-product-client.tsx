@@ -148,7 +148,7 @@ export default function EditProductClient({
                     <ArrowLeft className="w-4 h-4" />
                     Voltar ao Cardápio
                 </Link>
-                <h1 className="text-2xl font-bold text-gray-900 mb-2">Editar Produto</h1>
+                <h1 className="text-xl font-bold text-gray-900 mb-2">Editar Produto</h1>
                 <p className="text-gray-600">Atualize as informações do produto</p>
             </div>
 

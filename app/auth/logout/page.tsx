@@ -31,7 +31,7 @@ export default function Logout() {
     <div className="min-h-screen flex flex-col justify-center items-center py-12 px-6 bg-gradient-to-b from-background to-background/95">
       <div className="flex flex-col items-center justify-center w-full max-w-md">
         <div className="mt-12 text-center">
-          <h1 className="text-2xl font-bold text-foreground mb-4">
+          <h1 className="text-xl font-bold text-foreground mb-4">
             {error ? "Erro ao encerrar a sessão" : "Encerrando sua sessão..."}
           </h1>
 

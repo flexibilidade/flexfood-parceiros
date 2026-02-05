@@ -116,7 +116,7 @@ function PaymentSuccessContent() {
           transition={{ delay: 0.4 }}
           className="text-center mb-8"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-xl md:text-xl font-bold text-gray-900 mb-4">
             Parabéns!
           </h1>
           <p className="text-xl text-gray-600">
@@ -141,7 +141,7 @@ function PaymentSuccessContent() {
                 Referência do Pagamento
               </span>
             </div>
-            <p className="text-2xl font-bold text-gray-900 ml-11">
+            <p className="text-xl font-bold text-gray-900 ml-11">
               {reference || "N/A"}
             </p>
           </div>
@@ -159,7 +159,7 @@ function PaymentSuccessContent() {
                     Valor Pago
                   </span>
                 </div>
-                <p className="text-2xl font-bold text-green-600 ml-11">
+                <p className="text-xl font-bold text-green-600 ml-11">
                   {parseFloat(amount).toFixed(2)} MT
                 </p>
               </div>

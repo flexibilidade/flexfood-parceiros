@@ -96,7 +96,7 @@ export default function EarningsPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Histórico de Ganhos</h1>
+                    <h1 className="text-xl md:text-xl font-bold text-gray-900">Histórico de Ganhos</h1>
                     <p className="text-gray-600 mt-1">Veja todos os seus pedidos e ganhos</p>
                 </div>
             </div>
@@ -109,7 +109,7 @@ export default function EarningsPage() {
                             <CardDescription>Total de Pedidos</CardDescription>
                             <Package className="h-5 w-5 text-blue-600" />
                         </div>
-                        <CardTitle className="text-2xl font-bold text-gray-900">
+                        <CardTitle className="text-xl font-bold text-gray-900">
                             {totals.totalOrders}
                         </CardTitle>
                     </CardHeader>
@@ -121,7 +121,7 @@ export default function EarningsPage() {
                             <CardDescription>Vendas Totais</CardDescription>
                             <DollarSign className="h-5 w-5 text-purple-600" />
                         </div>
-                        <CardTitle className="text-2xl font-bold text-gray-900">
+                        <CardTitle className="text-xl font-bold text-gray-900">
                             {totals.totalSales.toFixed(2)} MT
                         </CardTitle>
                     </CardHeader>
@@ -133,7 +133,7 @@ export default function EarningsPage() {
                             <CardDescription>Seu Ganho</CardDescription>
                             <TrendingUp className="h-5 w-5 text-green-600" />
                         </div>
-                        <CardTitle className="text-2xl font-bold text-green-600">
+                        <CardTitle className="text-xl font-bold text-green-600">
                             {totals.totalRevenue.toFixed(2)} MT
                         </CardTitle>
                     </CardHeader>
@@ -145,7 +145,7 @@ export default function EarningsPage() {
                             <CardDescription>Taxas de Entrega</CardDescription>
                             <MapPin className="h-5 w-5 text-orange-600" />
                         </div>
-                        <CardTitle className="text-2xl font-bold text-gray-900">
+                        <CardTitle className="text-xl font-bold text-gray-900">
                             {totals.totalDeliveryFees.toFixed(2)} MT
                         </CardTitle>
                     </CardHeader>

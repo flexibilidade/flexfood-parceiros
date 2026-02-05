@@ -85,7 +85,7 @@ export default function BalancePage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Meu Saldo</h1>
+                    <h1 className="text-xl md:text-xl font-bold text-gray-900">Meu Saldo</h1>
                     <p className="text-gray-600 mt-1">Gerencie seus ganhos e levantamentos</p>
                 </div>
             </div>
@@ -96,7 +96,7 @@ export default function BalancePage() {
                 <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
                     <CardHeader className="pb-3">
                         <CardDescription className="text-green-100">Saldo Disponível</CardDescription>
-                        <CardTitle className="text-3xl font-bold">
+                        <CardTitle className="text-xl font-bold">
                             {(balanceData.balance || 0).toFixed(2)} MT
                         </CardTitle>
                     </CardHeader>
@@ -118,7 +118,7 @@ export default function BalancePage() {
                             <CardDescription>Total Ganho</CardDescription>
                             <TrendingUp className="h-5 w-5 text-blue-600" />
                         </div>
-                        <CardTitle className="text-2xl font-bold text-gray-900">
+                        <CardTitle className="text-xl font-bold text-gray-900">
                             {(balanceData.totalEarned || 0).toFixed(2)} MT
                         </CardTitle>
                     </CardHeader>
@@ -134,7 +134,7 @@ export default function BalancePage() {
                             <CardDescription>Saldo Pendente</CardDescription>
                             <Clock className="h-5 w-5 text-orange-600" />
                         </div>
-                        <CardTitle className="text-2xl font-bold text-gray-900">
+                        <CardTitle className="text-xl font-bold text-gray-900">
                             {(balanceData.pendingBalance || 0).toFixed(2)} MT
                         </CardTitle>
                     </CardHeader>
@@ -150,7 +150,7 @@ export default function BalancePage() {
                             <CardDescription>Disponível p/ Levantar</CardDescription>
                             <Wallet className="h-5 w-5 text-purple-600" />
                         </div>
-                        <CardTitle className="text-2xl font-bold text-gray-900">
+                        <CardTitle className="text-xl font-bold text-gray-900">
                             {(balanceData.availableForWithdrawal || 0).toFixed(2)} MT
                         </CardTitle>
                     </CardHeader>

@@ -136,8 +136,8 @@ function UserLocationContent() {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-100">
         <div className="text-center p-8 bg-white rounded-lg shadow-lg">
-          <div className="text-6xl mb-4">📍</div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">
+          <div className="text-xl mb-4">📍</div>
+          <h1 className="text-xl font-bold text-gray-800 mb-2">
             Localização não disponível
           </h1>
           <p className="text-gray-600">
@@ -167,7 +167,7 @@ function UserLocationContent() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-              <span className="text-2xl">📍</span>
+              <span className="text-xl">📍</span>
             </div>
             <div>
               <h1 className="text-lg font-bold text-gray-800">
@@ -187,7 +187,7 @@ function UserLocationContent() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-start gap-3">
             <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-2xl">ℹ️</span>
+              <span className="text-xl">ℹ️</span>
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-gray-800 mb-1">

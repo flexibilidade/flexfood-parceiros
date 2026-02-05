@@ -45,7 +45,7 @@ export function OrderTotal({
       {/* Total */}
       <div className="flex justify-between items-center pt-3 border-t">
         <span className="font-bold text-lg">Total:</span>
-        <span className="text-2xl font-bold text-primary">
+        <span className="text-xl font-bold text-primary">
           {formatCurrency(total)}
         </span>
       </div>

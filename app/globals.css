@@ -140,6 +140,14 @@
   }
 }
 
+
 button {
-  @apply cursor-pointer;
+  @apply cursor-pointer text-sm md:text-sm;
 }
+p,div,a {
+  @apply  text-sm md:text-sm;
+}
+h1,h2,h3,h4,h5,h6 {
+  @apply   text-xl sm:text-2xl md:text-3xl;
+}
+

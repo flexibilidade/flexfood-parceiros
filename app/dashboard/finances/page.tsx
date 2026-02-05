@@ -80,7 +80,7 @@ export default function FinancesPage() {
       {/* Header */}
       <div className="flex justify-between items-center flex-wrap gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Finanças e Relatórios</h1>
+          <h1 className="text-xl font-bold">Finanças e Relatórios</h1>
           <p className="text-muted-foreground">Acompanhe o desempenho do seu negócio</p>
         </div>
 
@@ -103,7 +103,7 @@ export default function FinancesPage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{overview?.totalRevenue.toFixed(2)} MT</div>
+            <div className="text-xl font-bold">{overview?.totalRevenue.toFixed(2)} MT</div>
             {comparison && (
               <p className={`text-xs flex items-center gap-1 ${comparison.changes.revenueChange >= 0 ? "text-green-600" : "text-red-600"}`}>
                 {comparison.changes.revenueChange >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
@@ -120,7 +120,7 @@ export default function FinancesPage() {
             <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{overview?.totalOrders}</div>
+            <div className="text-xl font-bold">{overview?.totalOrders}</div>
             {comparison && (
               <p className={`text-xs flex items-center gap-1 ${comparison.changes.ordersChange >= 0 ? "text-green-600" : "text-red-600"}`}>
                 {comparison.changes.ordersChange >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
@@ -137,7 +137,7 @@ export default function FinancesPage() {
             <Package className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{overview?.averageOrderValue.toFixed(2)} MT</div>
+            <div className="text-xl font-bold">{overview?.averageOrderValue.toFixed(2)} MT</div>
             <p className="text-xs text-muted-foreground">Por pedido</p>
           </CardContent>
         </Card>
@@ -149,7 +149,7 @@ export default function FinancesPage() {
             <XCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{overview?.cancelledOrders}</div>
+            <div className="text-xl font-bold">{overview?.cancelledOrders}</div>
             <p className="text-xs text-muted-foreground">
               {overview && overview.totalOrders > 0
                 ? `${((overview.cancelledOrders / overview.totalOrders) * 100).toFixed(1)}% do total`

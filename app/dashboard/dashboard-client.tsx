@@ -61,7 +61,7 @@ export default function DashboardClientPage() {
     <div className="py-6 space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold">Bem-vindo, {user?.name}! 👋</h1>
+        <h1 className="text-xl font-bold">Bem-vindo, {user?.name}! 👋</h1>
         <p className="text-muted-foreground">Aqui está um resumo do seu negócio</p>
       </div>
 
@@ -74,7 +74,7 @@ export default function DashboardClientPage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{overview?.totalRevenue.toFixed(2)} MT</div>
+            <div className="text-xl font-bold">{overview?.totalRevenue.toFixed(2)} MT</div>
             <p className="text-xs text-muted-foreground mt-1">
               Ticket médio: {overview?.averageOrderValue.toFixed(2)} MT
             </p>
@@ -88,7 +88,7 @@ export default function DashboardClientPage() {
             <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{overview?.totalOrders}</div>
+            <div className="text-xl font-bold">{overview?.totalOrders}</div>
             <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
               <CheckCircle className="h-3 w-3" />
               {overview?.deliveredOrders} entregues
@@ -103,7 +103,7 @@ export default function DashboardClientPage() {
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{overview?.pendingOrdersCount}</div>
+            <div className="text-xl font-bold">{overview?.pendingOrdersCount}</div>
             <p className="text-xs text-muted-foreground mt-1">
               {overview?.pendingAmount.toFixed(2)} MT
             </p>
@@ -117,7 +117,7 @@ export default function DashboardClientPage() {
             <XCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{overview?.cancelledOrders}</div>
+            <div className="text-xl font-bold">{overview?.cancelledOrders}</div>
             <p className="text-xs text-muted-foreground mt-1">
               {overview && overview.totalOrders > 0
                 ? `${((overview.cancelledOrders / overview.totalOrders) * 100).toFixed(1)}% do total`

@@ -76,7 +76,7 @@ export default function MenuClient({ session }: { session: Session }) {
         <div className="py-6">
             {/* Header */}
             <div className="mb-6">
-                <h1 className="text-2xl font-bold text-gray-900 mb-2">Cardápio</h1>
+                <h1 className="text-xl font-bold text-gray-900 mb-2">Cardápio</h1>
                 <p className="text-gray-600">
                     Gerencie suas categorias e produtos
                 </p>

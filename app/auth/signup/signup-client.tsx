@@ -90,9 +90,9 @@ export default function SignUpClient() {
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <User className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-gray-900">flexfood</span>
+              <span className="text-xl font-bold text-gray-900">flexfood</span>
             </Link>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">
+            <h1 className="text-xl font-bold text-gray-900 mb-2 tracking-tight">
               Criar sua conta
             </h1>
             <p className="text-gray-600">Comece a vender com o flexfood hoje</p>

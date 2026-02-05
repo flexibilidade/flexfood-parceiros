@@ -138,7 +138,7 @@ export function OrdersClient() {
     <div className="h-screen flex flex-col">
       {/* Header with Tabs */}
       <div className="border-b bg-white p-4">
-        <h1 className="text-2xl font-bold mb-4">Pedidos</h1>
+        <h1 className="text-xl font-bold mb-4">Pedidos</h1>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid w-full grid-cols-5 h-auto">
             <TabsTrigger value="new" className="text-xs md:text-sm">
