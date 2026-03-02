@@ -76,7 +76,7 @@ export default function MenuClient({ session }: { session: Session }) {
         <div className="py-6">
             {/* Header */}
             <div className="mb-6">
-                <h1 className="text-xl font-bold text-gray-900 mb-2">Cardápio</h1>
+                <h1 className="text-lg font-bold text-gray-900 mb-2">Cardápio</h1>
                 <p className="text-gray-600">
                     Gerencie suas categorias e produtos
                 </p>
@@ -145,7 +145,7 @@ export default function MenuClient({ session }: { session: Session }) {
                         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Plus className="w-8 h-8 text-gray-400" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2">
                             {searchQuery ? "Nenhum produto encontrado" : "Nenhum produto cadastrado"}
                         </h3>
                         <p className="text-gray-600 mb-6">
@@ -201,7 +201,7 @@ export default function MenuClient({ session }: { session: Session }) {
                                         <p className="text-sm text-gray-600 mb-1">
                                             {product.menuCategory?.name}
                                         </p>
-                                        <p className="text-lg font-bold text-primary">
+                                        <p className="text-sm font-bold text-primary">
                                             {product.price.toFixed(2)} MZN
                                         </p>
                                     </div>

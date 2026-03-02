@@ -70,6 +70,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (userId) {
         try {
           const response = await api.get("/api/partners/users/" + userId);
+          console.log("👤 User data loaded:", response.data.user);
+          console.log("🏢 Partner:", response.data.user?.partner);
           setUser(response.data.user);
           _user = response.data.user;
         } catch (e) {

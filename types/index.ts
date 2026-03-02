@@ -71,7 +71,11 @@ export interface User {
   country?: string;
   province?: string;
   city?: string;
-  partnerId?: string;
+  partner?: {
+    id: string;
+    name: string;
+    status: string;
+  };
   deletedAt?: Date;
   createdAt: Date;
   updatedAt: Date;

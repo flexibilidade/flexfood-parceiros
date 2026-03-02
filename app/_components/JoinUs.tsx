@@ -4,7 +4,7 @@ import { UtensilsCrossed, ShoppingCart } from "lucide-react";
 export default function JoinUs() {
     return (
         <div className="px-[5%] my-20">
-            <h1 className="text-gray-700 text-xl font-bold mb-8">
+            <h1 className="text-gray-700 text-lg font-bold mb-8">
                 Venda mais com o <span className="text-primary">flexfood</span>
             </h1>
 
@@ -27,7 +27,7 @@ export default function JoinUs() {
                             <span className="text-gray-300 text-sm font-medium block">
                                 flexfood para
                             </span>
-                            <strong className="text-gray-100 text-xl font-medium block mt-1">
+                            <strong className="text-gray-100 text-lg font-medium block mt-1">
                                 Restaurantes, Bebidas, Cafeteria e mais
                             </strong>
                         </div>
@@ -52,7 +52,7 @@ export default function JoinUs() {
                             <span className="text-gray-300 text-sm font-medium block">
                                 flexfood para
                             </span>
-                            <strong className="text-gray-100 text-xl font-medium block mt-1 sm:text-base">
+                            <strong className="text-gray-100 text-lg font-medium block mt-1 sm:text-base">
                                 Mercado, Farmácia e mais
                             </strong>
                         </div>

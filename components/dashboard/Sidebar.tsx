@@ -192,7 +192,7 @@ const Sidebar = () => {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <UtensilsCrossed className="w-5 h-5 text-white" />
             </div>
-            <span className="text-sidebar-foreground font-bold text-lg">
+            <span className="text-sidebar-foreground font-bold text-sm">
               flexfood
             </span>
           </motion.div>

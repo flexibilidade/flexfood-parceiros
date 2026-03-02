@@ -37,6 +37,8 @@ export function NewOrderDialog({ order, onClose }: NewOrderDialogProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
+    console.log("🎯 NewOrderDialog - order changed:", order ? `#${order.orderNumber}` : "null");
+    
     if (order && audioRef.current) {
       console.log("🔊 Dialog opened, playing sound...");
       
@@ -93,7 +95,7 @@ export function NewOrderDialog({ order, onClose }: NewOrderDialogProps) {
       <Dialog open={!!order} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl">🔔 Novo Pedido!</DialogTitle>
+            <DialogTitle className="text-lg">🔔 Novo Pedido!</DialogTitle>
             <DialogDescription>
               Você recebeu um novo pedido
             </DialogDescription>
@@ -102,7 +104,7 @@ export function NewOrderDialog({ order, onClose }: NewOrderDialogProps) {
           <div className="space-y-4">
             <div className="bg-primary/10 p-4 rounded-lg">
               <div className="text-sm text-muted-foreground">Pedido</div>
-              <div className="text-2xl font-bold">#{order.orderNumber}</div>
+              <div className="text-lg font-bold">#{order.orderNumber}</div>
             </div>
 
             <div className="space-y-2">
@@ -118,7 +120,7 @@ export function NewOrderDialog({ order, onClose }: NewOrderDialogProps) {
 
               <div>
                 <div className="text-sm text-muted-foreground">Total</div>
-                <div className="text-xl font-bold text-primary">
+                <div className="text-lg font-bold text-primary">
                   {order.total.toFixed(2)} MT
                 </div>
               </div>

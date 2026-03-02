@@ -109,7 +109,7 @@ export default function CategoriesClient({ session }: { session: Session }) {
                     <ArrowLeft className="w-4 h-4" />
                     Voltar ao Cardápio
                 </Link>
-                <h1 className="text-xl font-bold text-gray-900 mb-2">
+                <h1 className="text-lg font-bold text-gray-900 mb-2">
                     Categorias do Cardápio
                 </h1>
                 <p className="text-gray-600">
@@ -139,7 +139,7 @@ export default function CategoriesClient({ session }: { session: Session }) {
                         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Plus className="w-8 h-8 text-gray-400" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2">
                             Nenhuma categoria cadastrada
                         </h3>
                         <p className="text-gray-600 mb-6">
@@ -217,7 +217,7 @@ export default function CategoriesClient({ session }: { session: Session }) {
             {showModal && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
                     <div className="bg-white rounded-xl max-w-md w-full p-6">
-                        <h2 className="text-xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-lg font-bold text-gray-900 mb-4">
                             Nova Categoria
                         </h2>
                         <form onSubmit={handleCreateCategory} className="space-y-4">

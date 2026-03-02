@@ -77,9 +77,9 @@ export default function SignInClient() {
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <User className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">flexfood</span>
+              <span className="text-lg font-bold text-gray-900">flexfood</span>
             </Link>
-            <h1 className="text-xl font-bold text-gray-900 mb-2 tracking-tight">
+            <h1 className="text-lg font-bold text-gray-900 mb-2 tracking-tight">
               Bem-vindo de volta
             </h1>
             <p className="text-gray-600">Entre para gerenciar seu negócio</p>
@@ -154,6 +154,15 @@ export default function SignInClient() {
                   />
                 </div>
               </div>
+
+                  <div className="my-2 text-right">
+                    <Link
+                      href="/auth/forgot-password"
+                      className="text-sm text-primary hover:underline"
+                    >
+                      Esqueceu sua senha?
+                    </Link>
+                  </div>
 
               <button
                 type="submit"

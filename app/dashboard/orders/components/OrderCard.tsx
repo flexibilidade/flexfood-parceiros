@@ -28,7 +28,7 @@ export function OrderCard({ order, onUpdateStatus }: OrderCardProps) {
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div>
-              <CardTitle className="text-lg font-bold">
+              <CardTitle className="text-sm font-bold">
                 Pedido #{order.orderNumber}
               </CardTitle>
               <p className="text-sm text-muted-foreground mt-1">

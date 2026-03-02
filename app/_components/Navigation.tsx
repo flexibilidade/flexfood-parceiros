@@ -22,7 +22,7 @@ export default function Navigation({ session }: { session: Session | null }) {
             <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center group-hover:bg-primary/90 transition-colors">
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">
+            <span className="text-lg font-bold text-gray-900">
               flexfood
             </span>
           </Link>

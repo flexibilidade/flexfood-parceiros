@@ -131,7 +131,7 @@ export function WithdrawalForm({ availableBalance, onSuccess, onCancel }: Withdr
                                         </div>
                                         <div className="flex justify-between border-t border-blue-300 pt-1 mt-1">
                                             <span className="font-bold">Você receberá:</span>
-                                            <span className="font-bold text-lg">{netAmount.toFixed(2)} MT</span>
+                                            <span className="font-bold text-sm">{netAmount.toFixed(2)} MT</span>
                                         </div>
                                     </div>
                                 </div>

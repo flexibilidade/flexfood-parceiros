@@ -70,7 +70,7 @@ export function NewOrderNotification() {
 
               {/* Content */}
               <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-lg mb-1">
+                <h3 className="font-bold text-sm mb-1">
                   🔔 Novo Pedido #{order.orderNumber.toString().padStart(4, '0')}
                 </h3>
                 <p className="text-sm opacity-90 mb-2">

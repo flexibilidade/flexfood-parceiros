@@ -53,21 +53,22 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Check if user has partnerId
-    if (!user.partnerId) {
-      console.log("❌ User has no partnerId");
+    // Check if user has partner
+    if (!user.partner) {
+      console.log("❌ User has no partner associated");
       return;
     }
 
-    console.log("✅ User authenticated:", user.id, "Partner:", user.partnerId);
+    console.log("✅ User authenticated:", user.id, "Partner:", user.partner.id);
+    console.log("🔌 Attempting to connect to:", API_BASE_URL);
 
     // Connect to Socket.IO server
-    console.log("🔌 Connecting to Socket.IO at:", API_BASE_URL);
     const socketInstance = io(API_BASE_URL, {
-      transports: ["websocket"],
+      transports: ["websocket", "polling"],
       reconnection: true,
       reconnectionDelay: 1000,
-      reconnectionAttempts: 5,
+      reconnectionAttempts: 10,
+      timeout: 10000,
     });
 
     socketInstance.on("connect", () => {
@@ -75,27 +76,52 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
       setIsConnected(true);
 
       // Register as partner
-      socketInstance.emit("register", {
+      const registerData = {
         userId: user.id,
-        userType: "partner",
-        partnerId: user.partnerId,
-      });
+        userType: "partner" as const,
+        partnerId: user?.partner?.id,
+      };
+      console.log("📤 Sending register event:", registerData);
+      socketInstance.emit("register", registerData);
     });
 
-    socketInstance.on("disconnect", () => {
-      console.log("❌ Socket disconnected");
+    socketInstance.on("connect_error", (error) => {
+      console.error("❌ Socket connection error:", error.message);
+      console.error("Error details:", error);
       setIsConnected(false);
+    });
+
+    socketInstance.on("disconnect", (reason) => {
+      console.log("❌ Socket disconnected. Reason:", reason);
+      setIsConnected(false);
+    });
+
+    socketInstance.on("reconnect_attempt", (attemptNumber) => {
+      console.log(`🔄 Reconnection attempt ${attemptNumber}`);
+    });
+
+    socketInstance.on("reconnect", (attemptNumber) => {
+      console.log(`✅ Reconnected after ${attemptNumber} attempts`);
+      setIsConnected(true);
     });
 
     // Listen for new orders
     socketInstance.on("new-order", (data: { order: Order; message: string }) => {
       console.log("🔔 NEW ORDER RECEIVED (PARTNER):", data);
+      console.log("📍 Current page:", window.location.pathname);
 
       // Set current order to show dialog
       setCurrentOrder(data.order);
+      console.log("✅ Current order set, dialog should open");
 
       // Add to new orders list
       setNewOrders((prev) => [...prev, data.order]);
+
+      // Show toast notification as backup
+      toast.success(`Novo Pedido #${data.order.orderNumber}`, {
+        description: `${data.order.customerName} - ${data.order.total.toFixed(2)} MT`,
+        duration: 10000,
+      });
 
       // Auto-remove from new orders after 30 seconds
       setTimeout(() => {

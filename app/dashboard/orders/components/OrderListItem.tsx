@@ -23,7 +23,7 @@ export function OrderListItem({ order, isSelected, onClick }: OrderListItemProps
     >
       <div className="flex items-start justify-between mb-2">
         <div>
-          <p className="font-bold text-lg">#{order.orderNumber.toString().padStart(4, '0')}</p>
+          <p className="font-bold text-sm">#{order.orderNumber.toString().padStart(4, '0')}</p>
           <p className="text-sm text-muted-foreground">{order.customerName}</p>
         </div>
         <div className={`px-2 py-1 rounded text-xs font-medium ${config.color} text-white`}>

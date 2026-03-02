@@ -20,7 +20,7 @@ export function OrderDetails({ order, onUpdateStatus }: OrderDetailsProps) {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-xl font-bold">
+          <h1 className="text-lg font-bold">
             Pedido #{order.orderNumber.toString().padStart(4, "0")}
           </h1>
           <p className="text-muted-foreground mt-1">
@@ -33,7 +33,7 @@ export function OrderDetails({ order, onUpdateStatus }: OrderDetailsProps) {
       {/* Customer Info Card */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Informações do Cliente</CardTitle>
+          <CardTitle className="text-sm">Informações do Cliente</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="flex items-center gap-2">
@@ -79,7 +79,7 @@ export function OrderDetails({ order, onUpdateStatus }: OrderDetailsProps) {
       {/* Items Card */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Itens do Pedido</CardTitle>
+          <CardTitle className="text-sm">Itens do Pedido</CardTitle>
         </CardHeader>
         <CardContent>
           <OrderItems items={order.items} />
@@ -89,7 +89,7 @@ export function OrderDetails({ order, onUpdateStatus }: OrderDetailsProps) {
       {/* Total Card */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Resumo do Pedido</CardTitle>
+          <CardTitle className="text-sm">Resumo do Pedido</CardTitle>
         </CardHeader>
         <CardContent>
           <OrderTotal

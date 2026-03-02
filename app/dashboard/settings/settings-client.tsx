@@ -228,7 +228,7 @@ export default function SettingsClient() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-bold">Configurações</h1>
+        <h1 className="text-lg font-bold">Configurações</h1>
         <p className="text-muted-foreground mt-2">
           Gerencie as configurações do seu restaurante
         </p>

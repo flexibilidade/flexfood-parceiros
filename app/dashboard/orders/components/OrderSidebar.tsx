@@ -17,7 +17,7 @@ export function OrderSidebar({
   return (
     <div className="border-r bg-gray-50 h-full flex flex-col">
       <div className="p-4 border-b bg-white">
-        <h2 className="font-bold text-lg">Pedidos</h2>
+        <h2 className="font-bold text-sm">Pedidos</h2>
         <p className="text-sm text-muted-foreground">
           {orders.length} {orders.length === 1 ? "pedido" : "pedidos"}
         </p>

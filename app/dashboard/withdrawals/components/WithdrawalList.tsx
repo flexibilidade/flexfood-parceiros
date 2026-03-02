@@ -167,7 +167,7 @@ export function WithdrawalList({ withdrawals, onRefresh }: WithdrawalListProps) 
                                                 <StatusIcon className="h-5 w-5" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-lg text-gray-900">
+                                                <p className="font-bold text-sm text-gray-900">
                                                     {withdrawal.amount.toFixed(2)} MT
                                                 </p>
                                                 <p className="text-sm text-gray-600">

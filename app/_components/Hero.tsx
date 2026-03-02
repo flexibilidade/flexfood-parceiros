@@ -4,7 +4,7 @@ export default function Hero() {
     return (
         <div className="relative w-full bg-gradient-to-b from-black/50 to-black/70 bg-[url('/images/hero-bg.jpg')] bg-center bg-cover bg-no-repeat px-[5%]">
             <div className="max-w-[650px] mx-auto py-40 pt-48 flex flex-col justify-center items-center">
-                <h1 className="text-xl text-white text-center font-bold lg:text-xl md:text-xl sm:text-xl xs:text-xl">
+                <h1 className="text-lg text-white text-center font-bold lg:text-lg md:text-lg sm:text-lg xs:text-lg">
                     Gerencie o seu negócio com a nossa ajuda!
                 </h1>
 
