@@ -1,0 +1,17 @@
+{
+  "short_name": "Flexfood",
+  "start_url": "/",
+  "name": "Flexfood - Delivery de Comida",
+  "description": "Peça comida online com delivery rápido. Milhares de restaurantes na sua cidade.",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#EA1D2C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
