@@ -34,12 +34,12 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   isLoading: true,
   isAuthenticated: false,
-  logIn: async () => { },
-  logOut: async () => { },
-  refreshUserData: async () => { },
-  updateUserProfile: async () => { },
-  deleteAccount: async () => { },
-  changePassword: async () => { },
+  logIn: async () => {},
+  logOut: async () => {},
+  refreshUserData: async () => {},
+  updateUserProfile: async () => {},
+  deleteAccount: async () => {},
+  changePassword: async () => {},
 });
 
 // Hook for using the auth context
@@ -104,7 +104,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // Add default role if not present
       const userWithRole = {
         ...user,
-        role: user.role || 'USER'
+        role: user.role || "USER",
       };
       setUser(userWithRole);
     } catch (error) {
@@ -117,20 +117,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const logOut = async () => {
     try {
       await signOut();
+    } catch (error) {
+      console.error("Error during sign out:", error);
+    } finally {
+      // Always clear data and redirect, even if signOut fails
       localStorage.clear();
+      sessionStorage.clear();
       setUser(null);
 
-      // Show success message
-      toast.success("Sessão encerrada com sucesso", {
+      toast.success("Sessão encerrada", {
         description: "Você foi desconectado do sistema.",
       });
 
-      window.location.href = "/auth/signin";
-    } catch (error) {
-      console.error("Error during sign out:", error);
-      toast.error("Erro ao encerrar sessão", {
-        description: "Ocorreu um erro ao tentar desconectar. Tente novamente.",
-      });
+      // Force redirect to auth page
+      window.location.replace("/auth/signin");
     }
   };
 
@@ -254,6 +254,5 @@ export function AuthProvider({ children }: AuthProviderProps) {
     changePassword,
   };
 
-  return <AuthContext.Provider value={value}>{children}
-  </AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

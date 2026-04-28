@@ -73,7 +73,7 @@ export default function ResetPasswordClient() {
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <Lock className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">Flexcursos</span>
+            <span className="text-2xl font-bold text-gray-900">Flexfood</span>
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">
             Redefinir Senha

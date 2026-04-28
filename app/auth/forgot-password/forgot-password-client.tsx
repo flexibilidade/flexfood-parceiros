@@ -32,7 +32,8 @@ export default function ForgotPasswordClient() {
       console.error("Forgot password error:", error);
       toast.error("Erro", {
         description:
-          error.response?.data?.message || "Erro ao enviar código de recuperação",
+          error.response?.data?.message ||
+          "Erro ao enviar código de recuperação",
       });
     } finally {
       setIsLoading(false);
@@ -48,7 +49,7 @@ export default function ForgotPasswordClient() {
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <Mail className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">Flexcursos</span>
+            <span className="text-2xl font-bold text-gray-900">Flexfood</span>
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">
             Esqueceu sua senha?
