@@ -222,7 +222,7 @@ export default function OnboardingClient({ session }: { session: Session }) {
                           value={formData.phone}
                           onChange={handleInputChange}
                           className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                          placeholder="+258 84 XXX XXXX"
+                          placeholder="+258 84XXXXXXX"
                         />
                       </div>
                     </div>
@@ -238,7 +238,7 @@ export default function OnboardingClient({ session }: { session: Session }) {
                           value={formData.ownerPhone}
                           onChange={handleInputChange}
                           className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                          placeholder="+258 84 XXX XXXX"
+                          placeholder="+258 84XXXXXXX"
                         />
                       </div>
                     </div>

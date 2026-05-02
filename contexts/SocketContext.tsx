@@ -59,8 +59,6 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    console.log("✅ User authenticated:", user.id, "Partner:", user.partner.id);
-    console.log("🔌 Attempting to connect to:", API_BASE_URL);
 
     // Connect to Socket.IO server
     const socketInstance = io(API_BASE_URL, {
@@ -72,7 +70,6 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
     });
 
     socketInstance.on("connect", () => {
-      console.log("✅ Socket connected:", socketInstance.id);
       setIsConnected(true);
 
       // Register as partner
@@ -112,7 +109,6 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
 
       // Set current order to show dialog
       setCurrentOrder(data.order);
-      console.log("✅ Current order set, dialog should open");
 
       // Add to new orders list
       setNewOrders((prev) => [...prev, data.order]);

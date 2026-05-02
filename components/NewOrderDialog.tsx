@@ -49,7 +49,6 @@ export function NewOrderDialog({ order, onClose }: NewOrderDialogProps) {
       
       audioRef.current.play()
         .then(() => {
-          console.log("✅ Sound playing");
           setIsPlaying(true);
           
           // Auto-stop after 30 seconds

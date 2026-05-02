@@ -25,7 +25,6 @@ export function formatCurrency(
       maximumFractionDigits: 2,
     }).format(amount);
   } catch (error) {
-    // Fallback for unsupported currencies or locales
     const symbol = currency === "MZN" ? "MT" : currency;
     return `${symbol} ${amount.toLocaleString(locale, {
       minimumFractionDigits: 2,
