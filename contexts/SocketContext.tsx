@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState, useRef } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { toast } from "sonner";
 import { useAuth } from "./auth-context";
@@ -27,6 +27,7 @@ interface SocketContextType {
   currentOrder: Order | null;
   clearNewOrders: () => void;
   clearCurrentOrder: () => void;
+  reconnect: () => void;
 }
 
 const SocketContext = createContext<SocketContextType | undefined>(undefined);
@@ -37,7 +38,7 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
   const [newOrders, setNewOrders] = useState<Order[]>([]);
   const [currentOrder, setCurrentOrder] = useState<Order | null>(null);
   const { user, isLoading } = useAuth();
-  
+
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8060";
 
   useEffect(() => {
@@ -53,11 +54,21 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Check if user has partner
+
+    // Check if user has partner access (either owner or employee)
     if (!user.partner) {
-      console.log("❌ User has no partner associated");
+      console.log("❌ User has no partner access (not owner or employee)");
+      console.log("🔍 User role:", user.role);
+      console.log("🔍 User object keys:", Object.keys(user));
       return;
     }
+
+    console.log("✅ User has partner access:", {
+      partnerId: user.partner.id,
+      partnerName: user.partner.name,
+      isOwner: user.partner.isOwner,
+      role: user.partner.role
+    });
 
 
     // Connect to Socket.IO server
@@ -72,11 +83,17 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
     socketInstance.on("connect", () => {
       setIsConnected(true);
 
-      // Register as partner
+      // Register as partner - ensure user.partner exists
+      const partnerId = user.partner?.id;
+      if (!partnerId) {
+        console.error("❌ Cannot register socket: partnerId is missing");
+        return;
+      }
+
       const registerData = {
         userId: user.id,
         userType: "partner" as const,
-        partnerId: user?.partner?.id,
+        partnerId: partnerId,
       };
       console.log("📤 Sending register event:", registerData);
       socketInstance.emit("register", registerData);
@@ -150,8 +167,20 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
     setCurrentOrder(null);
   };
 
+  const reconnect = () => {
+    console.log("🔄 Manual reconnection requested");
+    if (socket) {
+      if (socket.connected) {
+        console.log("🔌 Socket already connected, disconnecting first...");
+        socket.disconnect();
+      }
+      console.log("🔌 Attempting to reconnect...");
+      socket.connect();
+    }
+  };
+
   return (
-    <SocketContext.Provider value={{ socket, isConnected, newOrders, currentOrder, clearNewOrders, clearCurrentOrder }}>
+    <SocketContext.Provider value={{ socket, isConnected, newOrders, currentOrder, clearNewOrders, clearCurrentOrder, reconnect }}>
       {children}
     </SocketContext.Provider>
   );

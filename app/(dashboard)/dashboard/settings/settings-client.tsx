@@ -25,6 +25,7 @@ import { Loader2, Save, Store, Clock, MapPin, Phone, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { partnerService } from "@/lib/services/partner-service";
 import { LocationPicker } from "@/components/location-picker";
+import { getProvinceNames, getCitiesByProvince } from "@/lib/data/mozambique-locations";
 
 interface PartnerSettings {
   availability: "OPEN" | "CLOSED" | "BUSY";
@@ -516,27 +517,52 @@ export default function SettingsClient() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="city">Cidade</Label>
-              <Input
-                id="city"
-                value={settings.city}
-                onChange={(e) =>
-                  setSettings((prev) => ({ ...prev, city: e.target.value }))
+              <Label htmlFor="province">Província</Label>
+              <Select
+                value={settings.province}
+                onValueChange={(value) =>
+                  setSettings((prev) => ({ ...prev, province: value, city: "" }))
                 }
-                placeholder="Nampula"
-              />
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione uma província" />
+                </SelectTrigger>
+                <SelectContent>
+                  {getProvinceNames().map((province) => (
+                    <SelectItem key={province} value={province}>
+                      {province}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="province">Província</Label>
-              <Input
-                id="province"
-                value={settings.province}
-                onChange={(e) =>
-                  setSettings((prev) => ({ ...prev, province: e.target.value }))
+              <Label htmlFor="city">Cidade</Label>
+              <Select
+                value={settings.city}
+                onValueChange={(value) =>
+                  setSettings((prev) => ({ ...prev, city: value }))
                 }
-                placeholder="Nampula"
-              />
+                disabled={!settings.province}
+              >
+                <SelectTrigger>
+                  <SelectValue 
+                    placeholder={
+                      settings.province 
+                        ? "Selecione uma cidade" 
+                        : "Primeiro selecione uma província"
+                    } 
+                  />
+                </SelectTrigger>
+                <SelectContent>
+                  {settings.province && getCitiesByProvince(settings.province).map((city) => (
+                    <SelectItem key={city} value={city}>
+                      {city}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </CardContent>

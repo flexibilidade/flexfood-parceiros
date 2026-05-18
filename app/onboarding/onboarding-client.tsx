@@ -7,6 +7,7 @@ import { Store, MapPin, Phone, ChevronRight, Check } from "lucide-react";
 import Link from "next/link";
 import { onboardingService } from "@/lib/services/onboarding-service";
 import { LocationPicker } from "@/components/location-picker";
+import { getProvinceNames, getCitiesByProvince } from "@/lib/data/mozambique-locations";
 
 type Session = {
   user: {
@@ -29,8 +30,8 @@ export default function OnboardingClient({ session }: { session: Session }) {
     ownerPhone: "",
     description: "",
     address: "",
-    city: "Nampula",
-    province: "Nampula",
+    city: "",
+    province: "",
     latitude: null as number | null,
     longitude: null as number | null,
   });
@@ -40,9 +41,20 @@ export default function OnboardingClient({ session }: { session: Session }) {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+    
+    setFormData(prev => {
+      const newData = {
+        ...prev,
+        [name]: value,
+      };
+      
+      // Reset city when province changes
+      if (name === "province") {
+        newData.city = "";
+      }
+      
+      return newData;
     });
   };
 
@@ -50,6 +62,12 @@ export default function OnboardingClient({ session }: { session: Session }) {
     if (step === 1) {
       if (!formData.name || !formData.phone) {
         toast.error("Preencha todos os campos obrigatórios");
+        return;
+      }
+    }
+    if (step === 2) {
+      if (!formData.province || !formData.city) {
+        toast.error("Selecione a província e cidade");
         return;
       }
     }
@@ -69,8 +87,14 @@ export default function OnboardingClient({ session }: { session: Session }) {
     e.preventDefault();
 
     // Validate location
-    if (!formData.latitude || !formData.longitude) {
-      toast.error("Por favor, selecione a localização do restaurante");
+    if (!formData.latitude || !formData.longitude || !formData.address) {
+      toast.error("Por favor, selecione a localização do restaurante no mapa");
+      return;
+    }
+
+    // Validate province and city
+    if (!formData.province || !formData.city) {
+      toast.error("Por favor, selecione a província e cidade");
       return;
     }
 
@@ -104,8 +128,8 @@ export default function OnboardingClient({ session }: { session: Session }) {
     }
   };
 
-  const provinces = ["Nampula"];
-  const cities = ["Nampula"];
+  const provinces = getProvinceNames();
+  const cities = formData.province ? getCitiesByProvince(formData.province) : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50/30 to-white">
@@ -299,18 +323,15 @@ export default function OnboardingClient({ session }: { session: Session }) {
                         required
                         value={formData.province}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-50"
-                        disabled
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                       >
+                        <option value="">Selecione uma província</option>
                         {provinces.map((prov) => (
                           <option key={prov} value={prov}>
                             {prov}
                           </option>
                         ))}
                       </select>
-                      <p className="mt-1.5 text-xs text-gray-500">
-                        Disponível apenas em Nampula
-                      </p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -321,18 +342,18 @@ export default function OnboardingClient({ session }: { session: Session }) {
                         required
                         value={formData.city}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-50"
-                        disabled
+                        disabled={!formData.province}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                       >
+                        <option value="">
+                          {formData.province ? "Selecione uma cidade" : "Primeiro selecione uma província"}
+                        </option>
                         {cities.map((city) => (
                           <option key={city} value={city}>
                             {city}
                           </option>
                         ))}
                       </select>
-                      <p className="mt-1.5 text-xs text-gray-500">
-                        Disponível apenas em Nampula
-                      </p>
                     </div>
                   </div>
 

@@ -75,6 +75,10 @@ export interface User {
     id: string;
     name: string;
     status: string;
+    availability?: string;
+    isOwner?: boolean;
+    role?: string;
+    partnerUserId?: string;
   };
   deletedAt?: Date;
   createdAt: Date;

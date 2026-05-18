@@ -34,30 +34,6 @@ export default function JoinUs() {
                     </div>
                 </div>
 
-                <div className="w-[48.5%] bg-white rounded-xl shadow-md flex flex-col overflow-hidden lg:w-full">
-                    <div className="relative w-full h-[300px]">
-                        <Image
-                            src="/images/market.jpeg"
-                            alt="Mercado"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
-
-                    <div className="bg-primary flex gap-8 p-5">
-                        <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                            <ShoppingCart className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                            <span className="text-gray-300 text-sm font-medium block">
-                                flexfood para
-                            </span>
-                            <strong className="text-gray-100 text-lg font-medium block mt-1 sm:text-base">
-                                Mercado, Farmácia e mais
-                            </strong>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

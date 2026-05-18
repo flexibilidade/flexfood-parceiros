@@ -28,8 +28,8 @@ const mapContainerStyle = {
 };
 
 const defaultCenter = {
-  lat: -15.1194, // Nampula, Moçambique
-  lng: 39.2686,
+  lat: -18.2436, // Centro de Moçambique
+  lng: 35.0000,
 };
 
 export function LocationPicker({
@@ -91,10 +91,20 @@ export function LocationPicker({
             setAddress(formattedAddress);
             onLocationSelect(lat, lng, formattedAddress);
             toast.success("Localização obtida com sucesso!");
+          } else {
+            // If no address found, use coordinates as fallback
+            const fallbackAddress = `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
+            setAddress(fallbackAddress);
+            onLocationSelect(lat, lng, fallbackAddress);
+            toast.success("Localização obtida! Endereço não encontrado, usando coordenadas.");
           }
         } catch (error) {
           console.error("Error getting address:", error);
-          toast.error("Erro ao obter endereço");
+          // Use coordinates as fallback
+          const fallbackAddress = `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
+          setAddress(fallbackAddress);
+          onLocationSelect(lat, lng, fallbackAddress);
+          toast.warning("Localização obtida, mas não foi possível obter o endereço.");
         } finally {
           setLoading(false);
         }
@@ -124,16 +134,31 @@ export function LocationPicker({
           const formattedAddress = data.results[0].formatted_address;
           setAddress(formattedAddress);
           onLocationSelect(lat, lng, formattedAddress);
+        } else {
+          // If no address found, use coordinates as fallback
+          const fallbackAddress = `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
+          setAddress(fallbackAddress);
+          onLocationSelect(lat, lng, fallbackAddress);
         }
       } catch (error) {
         console.error("Error getting address:", error);
-        toast.error("Erro ao obter endereço");
+        // Use coordinates as fallback
+        const fallbackAddress = `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
+        setAddress(fallbackAddress);
+        onLocationSelect(lat, lng, fallbackAddress);
       } finally {
         setLoading(false);
       }
     },
     [apiKey, onLocationSelect]
   );
+
+  // Initialize address when position is set initially
+  useEffect(() => {
+    if (initialLat && initialLng && !address) {
+      handleLocationChange(initialLat, initialLng);
+    }
+  }, [initialLat, initialLng, address, handleLocationChange]);
 
   // Handle map click
   const handleMapClick = useCallback(
@@ -360,11 +385,18 @@ export function LocationPicker({
                 <MapPin className="w-4 h-4 mt-1 text-primary" />
                 <div className="flex-1">
                   <p className="text-sm font-medium">Localização Selecionada</p>
-                  <p className="text-sm text-muted-foreground">{address}</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Lat: {position.lat.toFixed(6)}, Lng:{" "}
-                    {position.lng.toFixed(6)}
-                  </p>
+                  {address ? (
+                    <p className="text-sm text-gray-700">{address}</p>
+                  ) : (
+                    <p className="text-sm text-gray-500">
+                      Lat: {position.lat.toFixed(6)}, Lng: {position.lng.toFixed(6)}
+                    </p>
+                  )}
+                  {address && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Coordenadas: {position.lat.toFixed(6)}, {position.lng.toFixed(6)}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

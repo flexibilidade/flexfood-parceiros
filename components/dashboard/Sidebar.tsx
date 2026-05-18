@@ -37,6 +37,8 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { usePartnerPermissions } from "@/hooks/use-partner-permissions";
+import { useCurrentPartner } from "@/hooks/use-current-partner";
 import Image from "next/image";
 
 interface NavLink {
@@ -46,6 +48,9 @@ interface NavLink {
   adminOnly?: boolean;
   creatorOnly?: boolean;
   studentOnly?: boolean;
+  // Novas propriedades para permissões de restaurante
+  partnerPermissions?: string[]; // Array de permissões necessárias
+  partnerRoles?: string[]; // Array de papéis que podem acessar
 }
 
 interface NavGroup {
@@ -61,6 +66,8 @@ const Sidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { user } = useAuth();
+  const { partner } = useCurrentPartner();
+  const { hasAnyPermission } = usePartnerPermissions(partner?.id);
   const { setSidebarWidth, closeMobileSidebar } = useSidebar();
   const isMobile = useIsMobile();
   const [isExpanded, setIsExpanded] = useState(true);
@@ -82,11 +89,13 @@ const Sidebar = () => {
           name: "Cardápio",
           href: "/dashboard/menu",
           icon: <UtensilsCrossed size={20} />,
+          partnerPermissions: ["MANAGE_MENU"],
         },
         {
           name: "Pedidos",
           href: "/dashboard/orders",
           icon: <ShoppingBag size={20} />,
+          partnerPermissions: ["VIEW_ORDERS", "MANAGE_ORDERS"],
         },
       ],
     },
@@ -97,21 +106,25 @@ const Sidebar = () => {
           name: "Saldo",
           href: "/dashboard/balance",
           icon: <Wallet size={20} />,
+          partnerPermissions: ["VIEW_BALANCE", "VIEW_FINANCES"],
         },
         {
           name: "Levantamentos",
           href: "/dashboard/withdrawals",
           icon: <ArrowUpRight size={20} />,
+          partnerPermissions: ["MANAGE_WITHDRAWALS"],
         },
         {
           name: "Ganhos",
           href: "/dashboard/earnings",
           icon: <TrendingUp size={20} />,
+          partnerPermissions: ["VIEW_FINANCES", "VIEW_REPORTS"],
         },
         {
           name: "Finanças",
           href: "/dashboard/finances",
           icon: <DollarSign size={20} />,
+          partnerPermissions: ["VIEW_FINANCES"],
         },
       ],
     },
@@ -158,6 +171,13 @@ const Sidebar = () => {
           name: "Restaurante",
           href: "/dashboard/settings",
           icon: <Settings size={20} />,
+          partnerPermissions: ["MANAGE_SETTINGS"],
+        },
+        {
+          name: "Usuários",
+          href: "/dashboard/users",
+          icon: <Users size={20} />,
+          partnerPermissions: ["MANAGE_USERS"],
         },
         {
           name: "Terminar sessão",
@@ -220,6 +240,14 @@ const Sidebar = () => {
               if (link.adminOnly && user?.role !== "ADMIN") {
                 return false;
               }
+
+              // Partner permission links
+              if (link.partnerPermissions && link.partnerPermissions.length > 0) {
+                if (!hasAnyPermission(link.partnerPermissions)) {
+                  return false;
+                }
+              }
+
               return true;
             });
 

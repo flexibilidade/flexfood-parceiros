@@ -48,11 +48,11 @@ api.interceptors.response.use(
 
       // Only redirect if not already on an auth page
       const currentPath = window.location.pathname;
-      if (!currentPath.startsWith("/auth/signin")) {
-        window.location.href = "/auth/signin";
-      }
       if (!currentPath.startsWith("/auth/signup")) {
         window.location.href = "/auth/signup";
+      }
+      if (!currentPath.startsWith("/auth/signin")) {
+        window.location.href = "/auth/signin";
       }
     } else if (error.response?.status === 403) {
       // Forbidden - user is authenticated but doesn't have permission
